@@ -46,9 +46,16 @@ if __name__ == "__main__":
     key_table = key_table_generator(key_number, cipher_key, descipher_key, seed)
     original_message = input("Ingrese un mensaje a cifrar: ")
     
+    with open("llaves.txt", "w") as file:
+        for i, key in enumerate(key_table, 1):
+            file.write(f"Numero de llave {i}: {key}\n")
+    
+    print("Tabla de llaves guardada en llaves.txt")
+
     for key in key_table:
         encrypted_message = cipher_message(original_message, key)
         decrypted_message = descipher_message(encrypted_message, key)
         print("Clave: ", key)
         print("Mensaje Cifrado: ", encrypted_message)
         print("Mensaje Descifrado: ", decrypted_message)
+
