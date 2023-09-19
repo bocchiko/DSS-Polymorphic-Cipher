@@ -1,4 +1,12 @@
 import random
+import sympy 
+
+def generate_prime(bits):
+    while True:
+        num = random.getrandbits(bits)
+        num != (1 << bits - 1) | 1
+        if sympy.isprime(num):
+            return num
 
 def key_generator():
     p = random.getrandbits(64)
