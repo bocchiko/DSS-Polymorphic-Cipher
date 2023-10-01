@@ -13,7 +13,7 @@ def select_psn(message):
     # Ensure the PSN is in the valid range (0-15)
     psn %= 16
     
-    return psn
+    return random.randint(0, 3)
 
 def generate_prime(bits):
     while True:
@@ -22,10 +22,29 @@ def generate_prime(bits):
         if sympy.isprime(num):
             return num
 
+def generate_random_prime():
+    # Define the number of bits for the prime
+    num_bits = 16
+
+    # Generate a random integer with the specified number of bits
+    random_integer = random.getrandbits(num_bits)
+
+    # Ensure the random integer is odd (to increase the chances of getting a prime)
+    if random_integer % 2 == 0:
+        random_integer += 1
+
+    # Find the next prime number starting from the random integer
+    random_prime = sympy.nextprime(random_integer)
+
+    print(f"Random 64-bit prime number: {random_prime}")
+
 def pqs_generator():
-    p = generate_prime(64)
-    q = generate_prime(64)
-    s = random.getrandbits(64)
+    p = generate_prime(64) #sympy.randprime(1, 100) 
+    q = generate_prime(64) #sympy.randprime(1, 100)
+    s = random.getrandbits(64) #random.randint(1, 100)
+    """  p = sympy.randprime(1, 100) 
+    q = sympy.randprime(1, 100)
+    s = random.randint(1, 100) """
     return p, q, s
 
 
@@ -37,7 +56,7 @@ def generate_key(P, Q, seed):
     
 def key_table_generator(p, q, s,key_number):
     keys = []
-    for i in range(key_number):
+    for _ in range(key_number):
         PO = methods.scramble(p, s)
         key = methods.generation(PO, q)
         keys.append(key)

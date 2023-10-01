@@ -1,0 +1,2 @@
+Numero de llave 1: 88
+Numero de llave 2: 143
