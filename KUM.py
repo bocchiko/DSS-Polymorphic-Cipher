@@ -1,3 +1,8 @@
+# Key Update Message (KUM)
+# Este programa es para actualizar las llaves creadas en el programa FCM
+# El programa cuenta las llaves existentes para generar la misma cantidad de llaves.
+# Actualiza los archivos de llaves.txt y conexion.txt detallando el id, tipo de mensaje, payload y psn
+
 from functions import methods
 import utils
 

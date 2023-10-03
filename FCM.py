@@ -1,3 +1,6 @@
+# First Contact Message (FCM)
+# Este programa genera las tablas de llaves que se usaran para la encriptacion y genera un txt de conexion en el cual se especifica el id, tipo de mensaje, payload y psn
+
 from functions import methods
 import utils
 

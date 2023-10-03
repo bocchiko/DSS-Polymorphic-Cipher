@@ -1,3 +1,7 @@
+# Regular Message (RM)
+# Este programa es para encriptar y desencriptar mensajes. Este programa lee el txt con la tabla de llaves para encriptar y desencriptar un mensaje
+# El resultado de encriptacion y desencriptacion se muestra en la consola 
+
 from functions import methods
 import utils
 

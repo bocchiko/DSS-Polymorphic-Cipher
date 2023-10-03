@@ -1,3 +1,6 @@
+# Last Contact Message (LCM)
+# Programa para terminar comunicacion y barrar las llaves generadas y txt de conexion.
+
 import os
 
 # Función para borrar un archivo si existe

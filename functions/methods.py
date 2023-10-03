@@ -1,3 +1,4 @@
+# Funciones originales para operaciones reversibles
 def scramble(x, y):
     return (x ^ y) ^ (x >> 1)
 
@@ -16,7 +17,7 @@ def fg_inverse(x, y):
 def fm_inverse(x, y):
     return ((y >> 1) ^ x) ^ (x | y)
 
-# Reversible functions 
+# Funciones inversas para deshacer las operaciones originales
 def scramble(x, y):
     return (x ^ y) ^ (x >> 1)
 
@@ -40,14 +41,14 @@ def inverse_mutation(char_code, key):
     # Reverse the mutation operation
     return (char_code ^ (char_code | key)) ^ (key >> 1)
 
-# Function to apply reversible functions with PSN
+# Función para aplicar las operaciones reversibles con PSN
 def apply_reversible_functions(char_code, key, psn):
     # Convert char_code, key, and psn to 32-bit integers
     char_code &= 0xFFFFFFFF
     key &= 0xFFFFFFFF
     psn &= 0xF
     
-    # Apply the reversible functions based on PSN
+   # Aplica las funciones reversibles según el valor de PSN
     if psn == 0:
         return inverse_scramble(char_code, key)
     elif psn == 1:
