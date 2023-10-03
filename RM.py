@@ -46,11 +46,20 @@ def save_message(filename, formatted_message):
 # Example usage
 if __name__ == "__main__":
     
-    P , Q , S = utils.pqs_generator()
+    #P , Q , S = utils.pqs_generator()
+
+    keys = []
+    with open("results/llaves.txt", "r") as file:
+        lines = file.readlines()
+        for line in lines:
+            parts = line.split(": ")
+            if len(parts) == 2:
+                key = int(parts[1])
+                keys.append(key)
     
-    key_number = input("Ingrese numero de llaves a generar: ")
+    #key_number = input("Ingrese numero de llaves a generar: ")
     #keys = [generate_key(P , Q , S + i) for i in range(int(key_number))]
-    keys = utils.key_table_generator(P,Q,S,int(key_number))
+    #keys = utils.key_table_generator(P,Q,S,int(key_number))
     message = input("Ingrese el mensaje a cifrar (máximo 64 caracteres): ")
     psn = utils.select_psn(message)  # Select PSN based on message
     
@@ -60,10 +69,6 @@ if __name__ == "__main__":
     ft_message = format_message('{:06d}'.format(1), '{:04d}'.format(1), encrypted_message , psn)
     save_message('results/RM_Server_result.txt', ft_message)
     
-    # Guardar la tabla de llaves en un archivo
-    with open("results/RM_llaves.txt", "w") as file:
-        for i, key in enumerate(keys, 1):
-            file.write(f"Numero de llave {i}: {key}\n")
     
     print("Client Encrypted Message:", encrypted_message)
     print("Decrypted Server Message:", decrypted_message)

@@ -31,7 +31,9 @@ def save_message(filename, formatted_message):
 if __name__ == "__main__":
     P , Q , S = utils.pqs_generator()
     
-    key_number = input("Ingrese numero de llaves a generar: ")
+    with open("results/llaves.txt", "r") as file:
+        existing_keys = file.readlines()
+        key_number = len(existing_keys)
     #keys = [generate_key(P , Q , S + i) for i in range(int(key_number))]
     keys = utils.key_table_generator(P,Q,S,int(key_number))
     #message = input("Ingrese el mensaje a cifrar (máximo 64 caracteres): ")
@@ -40,7 +42,7 @@ if __name__ == "__main__":
     #encrypted_message = encrypt(message, keys, psn)
 
     #ft_message = format_message('{:06d}'.format(1), '{:04d}'.format(0), [P, Q, S, int(key_number)], 'N\A')
-    ft_message = format_message('{:06d}'.format(1), 'FCM', [P, Q, S, int(key_number)], 'N/A')
+    ft_message = format_message('{:06d}'.format(1), 'KUM', [P, Q, S, int(key_number)], 'N/A')
     with open("results/conexion.txt", "w") as file:
         file.write(ft_message)
     #save_message('results/FCM_Server_result.txt', ft_message)
@@ -50,5 +52,7 @@ if __name__ == "__main__":
         for i, key in enumerate(keys, 1):
             file.write(f"Numero de llave {i}: {key}\n")
 
-    print("Tabla de llaves guardada en results/llaves.txt")
-    print("Datos de Conexion guardado en results/conexion.txt")
+    print("Tabla de llaves actualizada en results/llaves.txt")
+    print("Datos de Conexion actualizados en results/conexion.txt")
+
+
