@@ -16,7 +16,7 @@ def fg_inverse(x, y):
 def fm_inverse(x, y):
     return ((y >> 1) ^ x) ^ (x | y)
 
-# Reversible functions (you can implement these based on your requirements)
+# Reversible functions 
 def scramble(x, y):
     return (x ^ y) ^ (x >> 1)
 

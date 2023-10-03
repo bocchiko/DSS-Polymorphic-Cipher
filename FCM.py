@@ -1,25 +1,7 @@
 from functions import methods
 import utils
 
-'''
-def encrypt(message, keys, psn):
-    encrypted_message = []
-    key_index = 0
-    
-    for char in message:
-        char_code = ord(char)
-        key = keys[key_index]
-        encrypted_char_code = methods.apply_reversible_functions(char_code, key, psn)
-        encrypted_message.append(encrypted_char_code)
-        
-        key_index += 1
-        if key_index >= len(keys):
-            key_index = 0
-    
-    return encrypted_message
-'''
-
-
+# Funcion para formatear el mensaje con id, tipo, payload y psn
 def format_message(id, type, payload, psn):
     return f"{id}\n{type}\n{payload}\n{psn}"
     
@@ -27,23 +9,17 @@ def format_message(id, type, payload, psn):
 def save_message(filename, formatted_message):
     with open(filename, "w") as file:
         file.write(formatted_message)
-# Example usage
+
 if __name__ == "__main__":
     P , Q , S = utils.pqs_generator()
     
     key_number = input("Ingrese numero de llaves a generar: ")
-    #keys = [generate_key(P , Q , S + i) for i in range(int(key_number))]
-    keys = utils.key_table_generator(P,Q,S,int(key_number))
-    #message = input("Ingrese el mensaje a cifrar (máximo 64 caracteres): ")
-    #psn = utils.select_psn(message)  # Select PSN based on message
-    
-    #encrypted_message = encrypt(message, keys, psn)
 
-    #ft_message = format_message('{:06d}'.format(1), '{:04d}'.format(0), [P, Q, S, int(key_number)], 'N\A')
+    keys = utils.key_table_generator(P,Q,S,int(key_number))
+
     ft_message = format_message('{:06d}'.format(1), 'FCM', [P, Q, S, int(key_number)], 'N/A')
     with open("results/conexion.txt", "w") as file:
         file.write(ft_message)
-    #save_message('results/FCM_Server_result.txt', ft_message)
     
     # Guardar la tabla de llaves en un archivo
     with open("results/llaves.txt", "w") as file:

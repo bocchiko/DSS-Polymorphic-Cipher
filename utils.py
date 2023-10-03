@@ -2,15 +2,16 @@ import hashlib
 import random
 import sympy
 from functions import methods
-# PSN selection function (you need to implement this based on your message structure)
+
+# Funcion de Seleccion de PSN
 def select_psn(message):
-   # Hash the message to generate a digest
+   # Convierte a hash el mensaje para generar un digest
     message_digest = hashlib.sha256(message.encode()).digest()
     
-    # Take the first byte of the digest as the PSN
+    # Toma el primer byte del digest como PSN
     psn = int.from_bytes(message_digest[:1], byteorder='big')
     
-    # Ensure the PSN is in the valid range (0-15)
+    # Se asegura que el PSN se encuentre en un rango valido (0-15)
     psn %= 16
     
     return psn
@@ -29,12 +30,13 @@ def pqs_generator():
     return p, q, s
 
 
-# Key generation function using pseudo-random parameters
+# Funcion generadorea de llaves
 def generate_key(P, Q, seed):
     P0 = methods.scramble(P, seed)
     key = methods.generation(P0, Q)
     return key
-    
+
+# Funciones que crea la tabla de llaves    
 def key_table_generator(p, q, s,key_number):
     keys = []
     for i in range(key_number):
