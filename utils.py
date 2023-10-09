@@ -10,9 +10,9 @@ def select_psn(message):
     
     # Toma el primer byte del digest como PSN
     psn = int.from_bytes(message_digest[:1], byteorder='big')
-    
-    # Se asegura que el PSN se encuentre en un rango valido (0-15)
-    psn %= 16
+
+    psn %= 13 
+    psn += 3
     
     return psn
 
@@ -28,13 +28,6 @@ def pqs_generator():
     q = generate_prime(64)
     s = random.getrandbits(64)
     return p, q, s
-
-
-# Funcion generadorea de llaves
-def generate_key(P, Q, seed):
-    P0 = methods.scramble(P, seed)
-    key = methods.generation(P0, Q)
-    return key
 
 # Funciones que crea la tabla de llaves    
 def key_table_generator(p, q, s,key_number):

@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     keys = utils.key_table_generator(P,Q,S,int(key_number))
 
-    ft_message = format_message('{:06d}'.format(1), 'FCM', [P, Q, S, int(key_number)], 'N/A')
+    ft_message = format_message('{:06d}'.format(1), '{:04d}'.format(0), [P, Q, S, int(key_number)], 'N/A')
     with open("results/conexion.txt", "w") as file:
         file.write(ft_message)
     

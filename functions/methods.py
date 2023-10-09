@@ -1,22 +1,3 @@
-# Funciones originales para operaciones reversibles
-def scramble(x, y):
-    return (x ^ y) ^ (x >> 1)
-
-def generation(x, y):
-    return (x & y) ^ (x << 1)
-
-def mutation(x, y):
-    return (x | y) ^ (y >> 1)
-
-def fs_inverse(x, y):
-    return ((x >> 1) ^ y) ^ x
-
-def fg_inverse(x, y):
-    return ((x << 1) ^ y) ^ (x & y)
-
-def fm_inverse(x, y):
-    return ((y >> 1) ^ x) ^ (x | y)
-
 # Funciones inversas para deshacer las operaciones originales
 def scramble(x, y):
     return (x ^ y) ^ (x >> 1)
@@ -55,7 +36,5 @@ def apply_reversible_functions(char_code, key, psn):
         return inverse_generation(char_code, key)
     elif psn == 2:
         return inverse_mutation(char_code, key)
-    # Add more cases for different PSN values if needed
-  
-    # Default case: no transformation (identity)
+   
     return char_code
