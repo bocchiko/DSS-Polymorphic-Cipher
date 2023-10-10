@@ -2,7 +2,7 @@
 # Programa para terminar comunicacion y barrar las llaves generadas y txt de conexion.
 
 import os
-
+import utils
 # Función para borrar un archivo si existe
 def delete_file(filename):
     if os.path.exists(filename):
@@ -14,9 +14,7 @@ def delete_file(filename):
 if __name__ == "__main__":
     # Lista de archivos a borrar
     files_to_delete = [
-        "results/conexion.txt",
-        "results/llaves.txt",
-        "results/RM_Server_result.txt",  
+        "results/keys.txt",
     ]
 
     deleted_any_file = False
@@ -25,6 +23,11 @@ if __name__ == "__main__":
         if os.path.exists(file):
             delete_file(file)
             deleted_any_file = True
+    
+    ft_message = utils.format_message('{:06d}'.format(1), '{:04d}'.format(11) , 'N/A', 'N/A')
+    utils.save_message('results/response.txt',ft_message)
+
+    print("Datos de Conexion guardado en results/response.txt")
 
     if not deleted_any_file:
         print("No existe comunicación existente con el servidor. Comienza una nueva comunicación por medio de FCM")

@@ -1,34 +1,32 @@
-#solo probando
-def scramble2(x, y, reverse=False):
-    if reverse:
-        return (x - y) % 256
-    return (x + y) % 256
-def generation2(x, y, reverse=False):
-    if reverse:
-        return (x - y) % 256
-    return (x + y) % 256
-def mutation2(x, y, reverse=False):
-    if reverse:
-        return (x - y) % 256
-    return (x + y) % 256
+import random
 
-# funciones de encriptación
+def scramble(x, y):
+    return (x ^ y) 
+
+def generation(x, y,constant=1):
+    result = (x ^ y) ^ constant
+    return result
+
+def mutation(x, y, shift=2):
+    y = (y << shift) | (y >> (64 - shift))  # Rotate y left by 'shift' bits
+    result = x ^ y
+    return result
+
 def fk1(x, key):
-    return scramble2(x, key)
+    return scramble(x, key)
 
-def fk2(x, key):
-    return generation2(x, key)
+def fk2(x, key,psn):
+    return generation(x, key, psn)
 
-def fk3(x, key):
-    return mutation2(x, key)
+def fk3(x, key, psn):
+    return mutation(x, key,psn)
 
 
-#funciones de desincriptacion
-def reverse_fk1(x,key):
-    return scramble2(x,key,reverse=True)
+def fs(x, y):
+    return (x ^ y) ^ (x >> 1)
 
-def reverse_fk2(x,key):
-    return generation2(x,key,reverse=True)
+def fg(x, y):
+    return (x & y) ^ (x << 1)
 
-def reverse_fk3(x,key):
-    return mutation2(x,key,reverse=True)
+def fm(x, y):
+    return (x | y) ^ (y >> 1)
