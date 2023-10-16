@@ -16,7 +16,7 @@ if __name__ == "__main__":
         key_number = len(existing_keys)
 
     keys = utils.key_table_generator(P,Q,S,int(key_number))
-    #keys = [utils.generate_key(P , Q , S + i) for i in range(int(key_number))]
+    
     ft_message = utils.format_message('{:06d}'.format(1), '{:04d}'.format(3), [P, Q, S, int(key_number)], 'N/A')
     utils.save_message('results/response.txt',ft_message)
     

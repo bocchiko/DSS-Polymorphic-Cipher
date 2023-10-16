@@ -24,6 +24,7 @@ if __name__ == "__main__":
             delete_file(file)
             deleted_any_file = True
     
+    # Genera un mensaje LCM para indicar el cierre de la comunicación
     ft_message = utils.format_message('{:06d}'.format(1), '{:04d}'.format(11) , 'N/A', 'N/A')
     utils.save_message('results/response.txt',ft_message)
 

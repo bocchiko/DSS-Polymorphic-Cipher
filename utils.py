@@ -3,7 +3,8 @@ import random
 import sympy
 from functions import methods
 
-# Funcion de Seleccion de PSN
+# FUNCION DE SELECCION DE PSN
+
 def select_psn(message):
    # Convierte a hash el mensaje para generar un digest
     message_digest = hashlib.sha256(message.encode()).digest()
@@ -16,26 +17,28 @@ def select_psn(message):
     
     return psn
 
+# Genera un número primo con 'bits' de longitud, es utilizado para la generacion de P y Q
 def generate_prime(bits):
     while True:
         num = random.getrandbits(bits)
         num |= (1 << bits - 1) | 1  # Asignación para asegurarse de que el número sea impar
         if sympy.isprime(num):
             return num
-        
+
+# Genera valores P, Q y S para claves criptográficas        
 def pqs_generator():
     p = generate_prime(64)
     q = generate_prime(64)
     s = random.getrandbits(64)
     return p, q, s
 
-# Key generation function using pseudo-random parameters
+# Genera una clave criptográfica utilizando P, Q y un valor 'seed'
 def generate_key(P, Q, seed):
     P0 = methods.scramble(P, seed)
     key = methods.generation(P0, Q)
     return key
     
-# Funciones que crea la tabla de llaves    
+# Funcion para generar la tabla de claves criptográficas    
 def key_table_generator(p, q, s,key_number):
     keys = []
     for _ in range(key_number):
